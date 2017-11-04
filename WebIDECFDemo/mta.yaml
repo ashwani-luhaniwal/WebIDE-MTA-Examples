@@ -1,0 +1,18 @@
+ID: WebIDECFDemo
+_schema-version: '2.0'
+description: Deploy from SAP Web IDE to Cloud Foundary
+version: 0.0.1
+modules:
+  - name: SAPUI5CloudFoundary
+    type: html5
+    path: SAPUI5CloudFoundary
+    parameters:
+      disk-quota: 256M
+      memory: 100M
+    build-parameters:
+      builder: grunt
+    requires:
+      - name: mongodb
+resources:
+  - name: mongodb
+    type: mongodb

@@ -1,0 +1,14 @@
+{
+  "welcomeFile": "/SAPUI5CloudFoundary/index.html",
+  "authenticationMethod": "none",
+  "logout": {
+    "logoutEndpoint": "/do/logout"
+  },
+  "routes": [
+    {
+      "source": "^/SAPUI5CloudFoundary/(.*)$",
+      "target": "$1",
+      "localDir": "webapp"
+    }
+  ]
+}

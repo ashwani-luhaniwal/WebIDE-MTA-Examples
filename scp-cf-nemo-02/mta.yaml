@@ -1,0 +1,14 @@
+ID: scp_cf_nemo_01
+_schema-version: '2.0'
+description: SCP Cloud Foundary NEMO App Sample
+version: 0.0.1
+
+modules:
+ - name: nemo-sample-01
+   type: html5
+   path: nemo-sample-01
+   parameters:
+      disk-quota: 256M
+      memory: 256M
+   build-parameters:
+      builder: grunt

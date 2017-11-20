@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta charset="UTF-8">
+
+		<title>SCP CF - Node MongoDB UI5 CRUD App Sample</title>
+
+		<script id="sap-ui-bootstrap"
+			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-libs="sap.m,sap.ui.table,sap.ui.layout"
+			data-sap-ui-theme="sap_belize"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-resourceroots='{"scp.cf.nemo-sample-02": "./"}'>
+		</script>
+
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+
+		<script>
+			sap.ui.getCore().attachInit(function() {
+				new sap.m.Shell({
+					app: new sap.ui.core.ComponentContainer({
+						height : "100%",
+						name : "scp.cf.nemo-sample-02"
+					})
+				}).placeAt("content");
+			});
+		</script>
+	</head>
+
+	<body class="sapUiBody" id="content" role="application">
+	</body>
+
+</html>

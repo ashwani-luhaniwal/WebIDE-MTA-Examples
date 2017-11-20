@@ -1,0 +1,20 @@
+{
+  "name": "nemo-sample-01",
+  "version": "0.0.1",
+  "description": "Creating sample NEMO sample app on SCP Cloud Foundary",
+  "devDependencies": {
+    "@sap/grunt-sapui5module-bestpractice-build": "^0.0.14"
+  },
+  "dependencies": {
+    "@sap/approuter": "2.7.1",
+    "body-parser": "*",
+    "express": "*",
+    "mongoose": "*",
+    "path": "*",
+    "cfenv": "*",
+    "node-inspector": "*"
+  },
+  "scripts": {
+    "start": "node app.js"
+  }
+}

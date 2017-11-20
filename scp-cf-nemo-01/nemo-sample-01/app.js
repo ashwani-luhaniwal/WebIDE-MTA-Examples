@@ -1,13 +1,14 @@
+"use strict";
 
-var express = require("express");
-var bodyParser = require("body-parser");
-var cfenv = require("cfenv");
+let express = require("express");
+let bodyParser = require("body-parser");
+let cfenv = require("cfenv");
 
 // create express instance
-var oApp = express();
+let oApp = express();
 
 // Cloud Foundry environment variables
-var oAppEnv = cfenv.getAppEnv();
+let oAppEnv = cfenv.getAppEnv();
 
 // body parser middleware to handle URL parameter and JSON bodies
 oApp.use(bodyParser.urlencoded({ extended: false }));
@@ -27,5 +28,5 @@ require("./server/api/info/info.js")(oApp, oAppEnv);
 require("./server/api/users/users.js")(oApp);
 
 oApp.listen(oAppEnv.port, function() {
-	console.log("Server listening at " + oAppEnv.port);
+	console.log("Server listening at " + oAppEnv.url);
 });

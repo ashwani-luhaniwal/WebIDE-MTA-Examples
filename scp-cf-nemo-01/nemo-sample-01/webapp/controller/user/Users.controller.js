@@ -35,6 +35,51 @@ sap.ui.define([
 			});
 		},
 		
+		onCloseAddUserDialog: function() {
+			this._getDialog().close();
+			this._getDialog().destroy();
+			delete this._oDialog;
+		},
+		
+		onSaveAddUserDialog: function() {
+			var that = this;
+			
+			var id = sap.ui.getCore().byId("ipID").getValue();
+			var userName = sap.ui.getCore().byId("ipUserName").getValue();
+			var lastName = sap.ui.getCore().byId("ipLastName").getValue();
+			var firstName = sap.ui.getCore().byId("ipFirstName").getValue();
+			
+			if (id === "" || userName === "" || lastName === "" || firstName === "") {
+				MessageToast.show(that.getResourceBundle().getText("msgPleaseEnterAllValues"));
+				return;
+			}
+			
+			var userData = {
+				"id": id,
+				"user_name": userName,
+				"last_name": lastName,
+				"first_name": firstName
+			};
+			
+			$.ajax({
+				url: "/api/user/",
+				type: "POST",
+				contentType: "application/json",
+				data: JSON.stringify(userData)
+			}).done(function() {
+				MessageToast.show(that.getResourceBundle().getText("msgUserAdded", [id]));
+				that._loadUserData();
+			}).fail(function(jqXHR, textStatus, error) {
+				MessageToast.show(that.getResourceBundle().getText("msgError"));
+			});
+			
+			this.onCloseAddUserDialog();
+		},
+		
+		onRefreshUser: function() {
+			this._loadUserData();	
+		},
+		
 		_loadUserData: function() {
 			this.getView().getModel().loadData("/api/user");
 		},

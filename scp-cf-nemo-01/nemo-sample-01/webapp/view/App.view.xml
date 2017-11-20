@@ -3,7 +3,7 @@
 	xmlns:html="http://www.w3.org/1999/xhtml" 
 	xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true" 
-	xmlns="sap.m"
+	xmlns:m="sap.m"
 	xmlns:tnt="sap.tnt"
 	xmlns:core="sap.ui.core"
 	height="100%">
@@ -12,13 +12,13 @@
 			<tnt:ToolPage id="toolPage">
 				<tnt:header>
 					<tnt:ToolHeader>
-						<Button icon="sap-icon://menu2"
+						<m:Button icon="sap-icon://menu2"
 								press="onPressSideNavigationToggleButton"
 								type="transparent">
-							<layoutData>
-								<OverflowToolbarLayoutData priority="NeverOverflow" />
-							</layoutData>
-						</Button>
+							<m:layoutData>
+								<m:OverflowToolbarLayoutData priority="NeverOverflow" />
+							</m:layoutData>
+						</m:Button>
 					</tnt:ToolHeader>
 				</tnt:header>
 				
@@ -36,9 +36,9 @@
 				</tnt:sideContent>
 				
 				<tnt:mainContent>
-					<NavContainer id="navContainer">
+					<m:NavContainer id="navContainer">
 						
-					</NavContainer>
+					</m:NavContainer>
 				</tnt:mainContent>
 			</tnt:ToolPage>
 		</pages>

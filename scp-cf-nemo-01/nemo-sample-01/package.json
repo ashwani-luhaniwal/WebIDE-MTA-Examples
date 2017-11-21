@@ -11,7 +11,8 @@
     "express": "*",
     "mongoose": "*",
     "path": "*",
-    "cfenv": "*"
+    "cfenv": "*",
+    "nodemon": "*"
   },
   "scripts": {
     "start": "node app.js"

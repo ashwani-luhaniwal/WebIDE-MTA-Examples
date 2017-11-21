@@ -1,7 +1,7 @@
 {
 	"_version": "1.7.0",
 	"sap.app": {
-		"id": "scp.cf.nemo-sample-01",
+		"id": "scp.cf.nemo-sample-02",
 		"type": "application",
 		"i18n": "i18n/i18n.properties",
 		"applicationVersion": {
@@ -33,14 +33,13 @@
 		"supportedThemes": [
 			"sap_hcb",
 			"sap_belize"
-
 		]
 	},
 
 	"sap.ui5": {
 		"rootView": {
-			"viewName": "scp.cf.nemo-sample-01.view.App",
-			"type": "XML"
+			"viewName": "scp.cf.nemo-sample-02.view.App",
+			"type": "JS"
 		},
 		"dependencies": {
 			"minUI5Version": "1.30.0",
@@ -51,7 +50,8 @@
 				"sap.ushell": {},
 				"sap.collaboration": {},
 				"sap.ui.comp": {},
-				"sap.uxap": {}
+				"sap.uxap": {},
+				"sap.ui.commons": {}
 			}
 		},
 		"contentDensities": {
@@ -62,7 +62,7 @@
 			"i18n": {
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
-					"bundleName": "scp.cf.nemo-sample-01.i18n.i18n"
+					"bundleName": "scp.cf.nemo-sample-02.i18n.i18n"
 				}
 			}
 		},
@@ -74,47 +74,38 @@
 		"routing": {
 			"config": {
 				"routerClass": "sap.m.routing.Router",
-				"viewType": "XML",
-				"async": true,
-				"viewPath": "scp.cf.nemo-sample-01.view",
+				"viewType": "JS",
+				"viewPath": "scp.cf.nemo-sample-02.view",
 				"controlAggregation": "pages",
-				"controlId": "idAppControl"
+				"controlId": "appView",
+				"transition": "slide"
 			},
 			"routes": [
 				{
-					"name": "RouteView1",
-					"pattern": "RouteView1",
-					"target": ["TargetView1"]
-				},
-				{
-					"name": "information",
+					"name": "LandingPage",
 					"pattern": "",
-					"target": ["information"]
+					"greedy": false,
+					"target": ["LandingPage"]
 				},
 				{
-					"name": "users",
-					"pattern": "Users",
-					"target": ["users"]
+					"name": "Details",
+					"pattern": "Details",
+					"greedy": false,
+					"target": ["Details"]
 				}
 			],
 			"targets": {
-				"TargetView1": {
-					"viewType": "XML",
+				"LandingPage": {
+					"viewType": "JS",
 					"transition": "slide",
 					"clearAggregation": true,
-					"viewName": "View1"
+					"viewName": "LandingPage"
 				},
-				"information": {
-					"viewName": "Information",
-					"viewType": "XML",
-					"viewId": "information",
-					"viewLevel": 1
-				},
-				"users": {
-					"viewName": "Users",
-					"viewType": "XML",
-					"viewId": "users",
-					"ViewLevel": 1
+				"Details": {
+					"viewName": "Details",
+					"viewType": "JS",
+					"clearAggregation": true,
+					"transition": "slide"
 				}
 			}
 		}

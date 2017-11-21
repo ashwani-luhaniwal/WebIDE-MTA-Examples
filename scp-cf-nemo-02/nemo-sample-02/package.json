@@ -1,7 +1,7 @@
 {
-  "name": "nemo-sample-01",
+  "name": "nemo-sample-02",
   "version": "0.0.1",
-  "description": "Creating sample NEMO sample app on SCP Cloud Foundary",
+  "description": "Creating CRUD based sample NEMO (NodeJS, MongoDB, ExpressJS and OpenUI5) app on SCP Cloud Foundary",
   "devDependencies": {
     "@sap/grunt-sapui5module-bestpractice-build": "^0.0.14"
   },
@@ -12,9 +12,12 @@
     "mongoose": "*",
     "path": "*",
     "cfenv": "*",
-    "node-inspector": "*"
+    "node-inspector": "*",
+    "assert": "*",
+    "mongodb": "*",
+    "nodemon": "*"
   },
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon server.js"
   }
 }

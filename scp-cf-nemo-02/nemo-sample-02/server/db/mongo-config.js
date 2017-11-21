@@ -4,10 +4,10 @@ let mongo = require("mongodb");
 
 let Server = mongo.Server,
 	Db = mongo.Db,
-	BSON = mongo.BSONPure;
+	BSON = mongo.BSON;
 
 let server = new Server('localhost', 27017, {auto_reconnect: true});
-db = new Db('empdb', server);
+let db = new Db('empdb', server);
 
 db.open(function(err, db) {
 	if (!err) {
@@ -23,7 +23,7 @@ db.open(function(err, db) {
 });
 
 let populateDB = function() {
-	let employee = [
+	let employees = [
 		{
 			id: "1",
 			name: "John",

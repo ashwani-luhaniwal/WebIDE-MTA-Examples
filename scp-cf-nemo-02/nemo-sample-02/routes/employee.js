@@ -1,55 +1,97 @@
-exports.findAll = function(req, res) {
-    db.collection('empdata', function(err, collection) {
-        collection.find().toArray(function(err, items) {
-            res.send(items);
-        });
+const express = require("express"),                     // import express module
+    router = express.Router(),                          // get an instance of express router
+    mongoClient = require("mongodb").MongoClient;       // get mongo client
+
+// Connect to MongoDB
+const connection = (closure) => {
+    return mongoClient.connect('mongodb://localhost:27017/empdb', (err, db) => {
+        if (err) return console.log(err);
+
+        closure(db);
     });
 };
 
-exports.addEmp = function(req, res) {
+// Error handling
+const sendError = (err, res) => {
+    response.status = 501;
+    response.message = typeof err == 'object' ? err.message : err;
+    res.status(501).json(response);
+};
+
+// Response json
+let response = {
+    status: 200,
+    data: [],
+    message: null
+};
+
+// route to get all employee records from mongodb
+exports.findAll = (req, res) => {
+    connection((db) => {
+        db.collection('empdata', (err, collection) => {
+            collection.find().toArray( (err, items) => {
+                res.send(items);
+            });
+        });
+    });  
+};
+
+// route to create new employee record in mongodb
+exports.addEmp = (req, res) => {
     let emp = req.body;
     console.log("Adding Employee: " + JSON.stringify(emp));
-    db.collection('empdata', function(err, collection) {
-        collection.insert(emp, {safe: true}, function(err, result) {
-            if (err) {
-                res.send({'error': 'An error has occurred'});
-            } else {
-                console.log("Success: " + JSON.stringify(result[0]));
-                res.send(result[0]);
-            }
+    connection((db) => {
+        db.collection('empdata', (err, collection) => {
+            collection.insert(emp, {safe: true}, (err, result) => {
+                if (err) {
+                    res.send({'error': 'An error has occurred'});
+                } else {
+                    console.log("Success: " + JSON.stringify(result[0]));
+                    res.send(result[0]);
+                }
+            });
         });
     });
 };
 
-exports.deleteEmp = function(req, res) {
+// route to delete particular employee record from mongodb
+exports.deleteEmp = (req, res) => {
     let empToDelete = req.params.id;
-    db.collection('empdata', function(err, collection) {
-        collection.remove({'id': empToDelete}, function(err) {
-            res.send((err === null) ? { msg: '' } : { msg: 'error: ' + err });
+    connection((db) => {
+        db.collection('empdata', (err, collection) => {
+            collection.remove({'id': empToDelete}, (err) => {
+                res.send((err === null) ? { msg: '' } : { msg: 'error: ' + err });
+            });
         });
     });
 };
 
-exports.updateEmp = function(req, res) {
+// route to update record of specific employee in mongodb
+exports.updateEmp = (req, res) => {
     let id = req.params.id;
     let emp = req.body;
-    db.collection('empdata', function(err, collection) {
-        collection.update({ 'id': id }, emp, function(err, result) {
-            if (err) {
-                res.send({ 'error': 'An error has occurred' });
-            } else {
-                console.log('Success: ' + JSON.stringify(result[0]));
-                res.send(result[0]);
-            }
+    connection((db) => {
+        db.collection('empdata', (err, collection) => {
+            collection.update({ 'id': id }, emp, (err, result) => {
+                if (err) {
+                    res.send({ 'error': 'An error has occurred' });
+                } else {
+                    console.log('Success: ' + JSON.stringify(result[0]));
+                    res.send(result[0]);
+                }
+            });
         });
     });
 };
 
-exports.findById = function(req, res) {
+// route to find specific employee record by id in mongodb
+exports.findById = (req, res) => {
     let empId = req.params.id;
-    db.collection('empdata', function(err, collection) {
-        collection.find({ id: empId }).toArray(function(err, items) {
-            res.send(items);
+    connection((db) => {
+        db.collection('empdata', (err, collection) => {
+            collection.find({ id: empId }).toArray( (err, items) => {
+                res.send(items);
+            });
         });
     });
 };

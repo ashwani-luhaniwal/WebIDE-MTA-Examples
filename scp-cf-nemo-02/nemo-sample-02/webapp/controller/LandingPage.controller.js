@@ -1,4 +1,4 @@
-sap.ui.controller("scp.cf.nemo-sample-01.controller.LandingPage", {
+sap.ui.controller("scp.cf.nemo-sample-02.controller.LandingPage", {
 
     /**
      * Called when a controller is instantiated and its View controls (if available) are already created.
@@ -28,6 +28,9 @@ sap.ui.controller("scp.cf.nemo-sample-01.controller.LandingPage", {
 
     },
 
+    /**
+     * Search employee record by id in MongoDB and show it on UI layer
+     */
     handleSearch: function(oEvent) {
         var empdata;
         var aData = jQuery.ajax({
@@ -47,11 +50,14 @@ sap.ui.controller("scp.cf.nemo-sample-01.controller.LandingPage", {
         sap.ui.getCore().byId('slbl_gender').setVisible(true);
 
         sap.ui.getCore().byId('s_txtName').setText(empdata[0].name);
-        sap.ui.getCore().byId('s_txtDob').setText(empdata[0].dob);
+        sap.ui.getCore().byId('s_txtDoB').setText(empdata[0].dob);
         sap.ui.getCore().byId('s_txtdesig').setText(empdata[0].designation);
         sap.ui.getCore().byId('s_txtgender').setText(empdata[0].gender);
     },
 
+    /**
+     * Create new employee record in MongoDB
+     */
     handleOperationBtncreate: function(oEvent) {
         var empData = {
             "id": sap.ui.getCore().byId('ip_cEmpId').getValue(),
@@ -97,6 +103,9 @@ sap.ui.controller("scp.cf.nemo-sample-01.controller.LandingPage", {
         sap.ui.getCore().byId('ip_cDesig').setValue('')
     },
 
+    /**
+     * Delete specific employee record from mongodb
+     */
     handlebtn_Delete: function(oEvent) {
         jQuery.ajax({
             url: "/employee/" + sap.ui.getCore().byId('ip_EmpId').getValue(),
@@ -127,6 +136,9 @@ sap.ui.controller("scp.cf.nemo-sample-01.controller.LandingPage", {
         landingpagecontroller.CRUDselection.close();
     },
 
+    /**
+     * Save new employee record in MongoDB
+     */
     handlebtn_Save: function(oEvent) {
         var empData = {
             "id": sap.ui.getCore().byId('ip_EmpId').getValue(),
@@ -166,6 +178,9 @@ sap.ui.controller("scp.cf.nemo-sample-01.controller.LandingPage", {
         landingpagecontroller.CRUDselection.close();
     },
 
+    /**
+     * Open dialog on row select
+     */
     rowSelect: function(e) {
         var idx = e.getParameter('rowIndex');
         var name = (sap.ui.getCore().getModel('model_table').getProperty('/modelData/' + idx).name);
@@ -182,6 +197,7 @@ sap.ui.controller("scp.cf.nemo-sample-01.controller.LandingPage", {
         sap.ui.getCore().byId('ip_EmpId').setEnabled(false);
     },
 
+    // get all the data from mongodb
     getData: function() {
         var oModel = new sap.ui.model.json.JSONModel();
         var aData = jQuery.ajax({

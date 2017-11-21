@@ -6,8 +6,8 @@ sap.ui.jsview("scp.cf.nemo-sample-02.view.App", {
      * @memberOf views.App
      */
     getControllerName: function() {
-        return "scf.cf.nemo-sample-02.controller.App";
-    }
+        return "scp.cf.nemo-sample-02.controller.App";
+    },
 
     /**
      * Is initially called once after the Controller has been instantiated. It is the place where UI is constructed.

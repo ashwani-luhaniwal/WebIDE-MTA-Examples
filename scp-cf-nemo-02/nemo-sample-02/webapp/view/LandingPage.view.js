@@ -15,6 +15,7 @@ sap.ui.jsview("scp.cf.nemo-sample-02.view.LandingPage", {
      */
     createContent: function(oController) {
 
+        // create input and label for employee update/delete dialog form
         var ip_EmpId = new sap.m.Input('ip_EmpId', {value: "", enabled: true});
         var ip_sEmpId = new sap.m.Input('ip_sEmpId', {value: ""});
         var ip_Name = new sap.m.Input('ip_Name', {value: ""});
@@ -40,6 +41,7 @@ sap.ui.jsview("scp.cf.nemo-sample-02.view.LandingPage", {
             ]
         });
 
+        // create input and labels for employee create form
         var ip_cEmpId = new sap.m.Input('ip_cEmpId', {value: "", enabled: true});
         var ip_cName = new sap.m.Input('ip_cName', {value: ""});
         var ip_cDOB = new sap.m.DatePicker('ip_cDOB', {value: "", valueFormat: "dd/MM/yyyy", displayFormat: "dd/MM/yyyy"});
@@ -103,7 +105,7 @@ sap.ui.jsview("scp.cf.nemo-sample-02.view.LandingPage", {
             label: 'Id',
             template: txt_EmpId
         });
-        var oIdCol3 = new sap.m.table.Column("Coln_3", {
+        var oIdCol3 = new sap.ui.table.Column("Coln_3", {
             label: 'Name',
             template: txt_Name
         });
@@ -136,5 +138,6 @@ sap.ui.jsview("scp.cf.nemo-sample-02.view.LandingPage", {
             oController.oTable
         ];
         return ele;
+
     }
 });

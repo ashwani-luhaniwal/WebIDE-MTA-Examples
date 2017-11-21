@@ -1,27 +1,34 @@
 "use strict";
 
 let express = require("express"),
-	// client express routes
-	emp = require("./routes/employee");
+	emp = require("./routes/employee"),
+	bodyParser = require("body-parser");
 
 // create express instance
 let oApp = express();
 
-oApp.use(express.static(__dirname));
-oApp.configure(function() {
-	app.use(express.logger('dev'));
-	app.use(express.bodyParser());
-});
+// body parser middleware to handle URL parameter and JSON bodies
+oApp.use(bodyParser.urlencoded({extended: false}));
+oApp.use(bodyParser.json());	// support json encoded bodies
 
+// "static" resources
+oApp.use(express.static(__dirname + "/webapp"));
+
+// client express routes
+require("./routes/routes.js")(oApp);
+
+// connect to mongodb
+require("./server/db/mongo-config.js");
+
+// all express routes
 oApp.get("/employees", emp.findAll);
 oApp.post("/employee", emp.addEmp);
 oApp.put("/employee/:id", emp.updateEmp);
 oApp.get("/employee/:id", emp.findById);
 oApp.delete("/employee/:id", emp.deleteEmp);
 
-oApp.listen(3000, function() {
+oApp.listen(process.env.PORT || 3000, function() {
 	console.log("Server listening at: 3000");
 });
 
-// connect to mongodb
-require("./server/db/mongo-config.js");
+

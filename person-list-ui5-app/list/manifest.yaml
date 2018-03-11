@@ -1,0 +1,5 @@
+---
+applications:
+- name: SAPAssetManagement
+  memory: 1024m
+  instances: 1

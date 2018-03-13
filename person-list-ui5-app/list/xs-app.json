@@ -1,14 +1,10 @@
 {
-  "welcomeFile": "/list/index.html",
-  "authenticationMethod": "none",
-  "logout": {
-    "logoutEndpoint": "/do/logout"
-  },
+  "welcomeFile": "/list/webapp/index.html",
   "routes": [
     {
       "source": "^/list/(.*)$",
-      "target": "$1",
-      "localDir": "webapp"
+      "target": "/",
+      "destination": "dest-to-app"
     }
   ]
 }

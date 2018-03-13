@@ -20,6 +20,15 @@
         "version": "1.52.7"
       },
       "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "ER9",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "ER9 Service Request"
     }
   ],
   "sendWelcomeFileRedirect": true

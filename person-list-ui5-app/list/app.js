@@ -3,13 +3,16 @@ const Bot = require('node-telegram-bot-api');
 const request = require('request');
 const http = require('http');
 const express = require('express');
+const path = require('path');
 const app = express();
 // const config = require('./config');
+
+app.use(express.static(path.join(__dirname, 'webapp')));
 
 // API with schedule of space launches
 const url = 'https://launchlibrary.net/1.3/launch';
 const trigger = 'I want to travel!';    // user's input
-const token = 'YOUR_TOKEN';
+const token = '480961810:AAECtZ2AkZuyaV0jn6JvgPLMC6mDmkstjdw';
 const serviceURL = 'https://ldai5er9.wdf.sap.corp:44300';
 
 const bot = new Bot(token, {polling: true});
@@ -29,7 +32,7 @@ bot.on('message', (msg) => {
     } else if (msg.text.toString() === 'Hi') {
         bot.sendMessage(msg.from.id, 'Welcome ' + msg.from.first_name);
         bot.sendMessage(msg.from.id, 'How may I assist you ?');
-        let csrfToken;
+        /*let csrfToken;
         request({
             url: serviceURL + '/sap/opu/odata/SAP/Z_ASSET_MANAGEMENT_SRV/orderSet?$format=json',
             headers: {
@@ -49,7 +52,7 @@ bot.on('message', (msg) => {
                 bot.sendMessage(msg.chat.id, 'Response: ' + response);
                 bot.sendMessage(msg.chat.id, 'Body: ' + body);
             }
-        });
+        });*/
     }
 
     bot.sendMessage(msg.chat.id, 'Hi, do you want to travel?', {
@@ -79,7 +82,8 @@ bot.onText(/\/help/, (msg, match) => {
 function serverCall() {
     // let csrfToken;
         request({
-            url: serviceURL + '/sap/opu/odata/SAP/Z_ASSET_MANAGEMENT_SRV/orderSet?$format=json',
+            // url: serviceURL + '/sap/opu/odata/SAP/Z_ASSET_MANAGEMENT_SRV/orderSet?$format=json',
+            url: '/sap/opu/odata/SAP/Z_ASSET_MANAGEMENT_SRV/orderSet?$format=json',
             headers: {
                 'Authorization': 'Basic TFVIQU5JV0FMOmUyZGhzZWFzaHVAQUtMJA==',
                 'Content-Type': 'application/json',
@@ -106,3 +110,6 @@ function serverCall() {
 
 serverCall();
 
+app.listen(process.env.PORT || 3000, () => {
+    console.log('App running on port 3000');
+});

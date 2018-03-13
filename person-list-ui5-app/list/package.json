@@ -7,7 +7,11 @@
   },
   "dependencies": {
     "@sap/approuter": "2.7.1",
+    "@sap/xsenv": "^1.2.9",
+    "@sap/xssec": "^2.1.7",
+    "async": "^2.6.0",
     "express": "^4.16.2",
+    "jsonwebtoken": "^8.2.0",
     "node-telegram-bot-api": "^0.30.0",
     "request": "^2.83.0",
     "xml2js": "^0.4.19"

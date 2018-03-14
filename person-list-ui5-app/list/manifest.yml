@@ -1,7 +1,8 @@
 ---
 applications:
-- name: SAPAssetManagement
+- name: sapassetmanagement
   buildpack: nodejs_buildpack
+  command: node app.js
   memory: 1024m
   instances: 1
   path: ./
@@ -9,9 +10,9 @@ applications:
     NODE_TLS_REJECT_UNAUTHORIZED: 0
     destinations: >
       [
-         {"name":"dest-to-app", "url" :"https://sapassetmanagement.cfapps.eu10.hana.ondemand.com", "forwardAuthToken": true },
-         {"name":"ui5", "url":"https://sapui5.hana.ondemand.com/1.42.6/resources/"}
+         {"name":"backend-secure", "url" :"https://sapassetmanagement.cfapps.eu10.hana.ondemand.com", "forwardAuthToken": true }
       ]
   services:
-    - xsuaa-demo
-    - connectivity-demo-lite
+    - sapassetmanagement-xsuaa
+    - sapassetmanagement-connectivity
+    - sapassetmanagement-destination

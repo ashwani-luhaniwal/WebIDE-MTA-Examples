@@ -4,6 +4,8 @@ sap.ui.define([
 	"use strict";
 
 	return Controller.extend("persons.list.controller.Main", {
+		
 
+  
 	});
 });

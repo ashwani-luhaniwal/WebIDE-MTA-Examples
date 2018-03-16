@@ -1,10 +1,9 @@
 {
-  "welcomeFile": "/list/webapp/index.html",
   "routes": [
     {
-      "source": "^/list/(.*)$",
-      "target": "/",
-      "destination": "dest-to-app"
+      "source": "(.*)",
+      "target": "$1",
+      "destination": "backend-secure"
     }
   ]
 }

@@ -5,15 +5,34 @@ const http = require('http');
 const express = require('express');
 const path = require('path');
 const app = express();
-// const config = require('./config');
+
+const xsenv = require('@sap/xsenv');
+const passport = require('passport');
+const JWTStrategy = require('@sap/xssec').JWTStrategy;
+
+const services = xsenv.getServices({ uaa:'sapassetmanagement-xsuaa' });
+console.log('Services: -----------------> ' + JSON.stringify(services));
+var vcap = JSON.parse(process.env.VCAP_SERVICES);
+console.log('VCAP Value ----------------> ' + JSON.stringify(vcap));
+
+/*passport.use(new JWTStrategy(services.uaa));
+
+app.use(passport.initialize());
+app.use(passport.authenticate('JWT', { session: false }));*/
 
 app.use(express.static(path.join(__dirname, 'webapp')));
+
+/*app.get('/', function (req, res, next) {
+    res.send('Application user: ' + req.user.id);
+});*/
+
 
 // API with schedule of space launches
 const url = 'https://launchlibrary.net/1.3/launch';
 const trigger = 'I want to travel!';    // user's input
-const token = '480961810:AAECtZ2AkZuyaV0jn6JvgPLMC6mDmkstjdw';
-const serviceURL = 'https://ldai5er9.wdf.sap.corp:44300';
+const token = '';
+// const serviceURL = 'https://ldai5er9.wdf.sap.corp:44300';
+const serviceURL = 'https://sapassetmanagement.cfapps.eu10.hana.ondemand.com';
 
 const bot = new Bot(token, {polling: true});
 
@@ -82,8 +101,8 @@ bot.onText(/\/help/, (msg, match) => {
 function serverCall() {
     // let csrfToken;
         request({
-            // url: serviceURL + '/sap/opu/odata/SAP/Z_ASSET_MANAGEMENT_SRV/orderSet?$format=json',
-            url: '/sap/opu/odata/SAP/Z_ASSET_MANAGEMENT_SRV/orderSet?$format=json',
+            url: serviceURL + '/sap/opu/odata/SAP/Z_ASSET_MANAGEMENT_SRV/orderSet',
+            // url: '/sap/opu/odata/SAP/Z_ASSET_MANAGEMENT_SRV/orderSet?$format=json',
             headers: {
                 'Authorization': 'Basic TFVIQU5JV0FMOmUyZGhzZWFzaHVAQUtMJA==',
                 'Content-Type': 'application/json',
@@ -93,19 +112,50 @@ function serverCall() {
             if (!error && response.statusCode == 200) {
                 // csrfToken = response.headers['x-csrf-token'];
                 // console.log('CSRF Token: ' + csrfToken);
-                console.log('Error: ', error);
-                console.log('Response: ', response);
-                console.log('Body: ', body);
+                console.log('Error: ---------------------------> ', JSON.stringify(error));
+                console.log('Response: -------------------------> ', JSON.stringify(response));
+                console.log('Body:------------------------> ', JSON.stringify(body));
                 // res.json(body);
                 // bot.sendMessage(msg.chat.id, 'Error: ' + error);
                 // bot.sendMessage(msg.chat.id, 'Response: ' + response);
                 // bot.sendMessage(msg.chat.id, 'Body: ' + body);
             } else {
-                console.log('If error occurs, then the Error: ', error);
-                console.log('If error occurs, then the Response: ', response);
-                console.log('If error occurs, then the Body: ', body);
+                console.log('If error occurs, then the Error: ------------------> ', JSON.stringify(error));
+                console.log('If error occurs, then the Response: ---------------> ', JSON.stringify(response));
+                console.log('If error occurs, then the Body: ->>>>>>>>>>>>>>>>>>>> ', JSON.stringify(body));
             }
         });
+
+    /*try {
+        request({
+            uri: serviceURL + '/sap/opu/odata/SAP/Z_ASSET_MANAGEMENT_SRV/orderSet?$format=json',
+            method: 'GET',
+            headers: {
+                'Authorization': 'Basic TFVIQU5JV0FMOmUyZGhzZWFzaHVAQUtMJA==',
+                'Content-Type': 'application/json',
+                'x-csrf-token': 'Fetch'
+            }
+        }, function(error, response, body) {
+            console.log("setting db options.");
+            if (!error && response.statusCode == 200) {
+                var checkResponseBody = JSON.parse(body);
+                console.log(checkResponseBody);
+                console.log('Response -------------> ' + response);
+                options = checkResponseBody['credentials'];
+                var userConfig = {};
+                userConfig.host = options.host;
+                userConfig.port = options.port;
+                userConfig.user = options.user;
+                userConfig.password = options.password;
+                userConfig.schema = options.schema;
+                processData(req, res, userConfig, identityZone);
+            }
+        });
+
+    } catch (err) {
+        console.log("Something went wrong with the connection!");
+        console.log(err);
+    }*/
 }
 
 serverCall();

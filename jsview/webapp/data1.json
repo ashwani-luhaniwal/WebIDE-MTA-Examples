@@ -1,0 +1,142 @@
+{
+  "root": {
+    "id": "root",
+    "level": "root",
+    "children": [
+    	{
+    		"id": "01",
+    		"level": "01",
+    		"name": "Concept Phase",
+    		"order": [
+    			{
+        			"startTime": "20150101000000",
+        			"endTime": "20150125000000",
+        			"level": "1"
+    			}
+    		],
+        	"children": [
+        		{
+            		"id": "0101",
+            		"level": "01",
+            		"name": "Detailed Project Planning",
+            		"order": [
+            			{
+                			"startTime": "20150101000000",
+                			"endTime": "20150123000000",
+                			"level": "2"
+            			}
+            		]
+        		}
+        	]
+    	},
+    	{
+                "level": 1,
+                "objectType": "DPO",
+                "guid": "3863BB4422751ED7BCA73DC9ABF81F76",
+                "explanation": "Gantt example",
+                "iconSource": "/sap/public/ppm/pro/icon_project_tr.gif",
+                "iconTooltip": "Project",
+                "statusIconSource": "/sap/public/bc/icons/s_S_LEDI.gif",
+                "statusIconTooltip": "No Value Set",
+                "editable": "FALSE",
+                "potentialParent": "TRUE",
+                "collapsed": "FALSE",
+                "childrenLoaded": "TRUE",
+                "selected": "TRUE",
+                "scheduleConflict": "FALSE",
+                "cutCopySelected": "FALSE",
+                "menuId": "MENU_CREATE"
+            }, {
+                "level": 2,
+                "objectType": "TTO",
+                "guid": "3863BB4422751ED7BCA73E3CA485FF78",
+                "explanation": "task 1 below project definition",
+                "parentGuid": "3863BB4422751ED7BCA73DC9ABF81F76",
+                "iconSource": "/sap/public/ppm/pro/icon_task_tr.gif",
+                "iconTooltip": "Task",
+                "statusIconSource": "/sap/public/bc/icons/s_S_LEDI.gif",
+                "statusIconTooltip": "No Value Set",
+                "editable": "FALSE",
+                "potentialParent": "TRUE",
+                "collapsed": "TRUE",
+                "childrenLoaded": "FALSE",
+                "selected": "FALSE",
+                "scheduleConflict": "FALSE",
+                "cutCopySelected": "FALSE",
+                "menuId": "NIL"
+            }, {
+                "level": 2,
+                "objectType": "TTO",
+                "guid": "3863BB4422751EE7BCA856C2972F86D0",
+                "explanation": "task 2 below project definition",
+                "parentGuid": "3863BB4422751ED7BCA73DC9ABF81F76",
+                "iconSource": "/sap/public/ppm/pro/icon_task_tr.gif",
+                "iconTooltip": "Task",
+                "statusIconSource": "/sap/public/bc/icons/s_S_LEDI.gif",
+                "statusIconTooltip": "No Value Set",
+                "editable": "FALSE",
+                "potentialParent": "TRUE",
+                "collapsed": "TRUE",
+                "childrenLoaded": "FALSE",
+                "selected": "FALSE",
+                "scheduleConflict": "FALSE",
+                "cutCopySelected": "FALSE",
+                "menuId": "NIL"
+            }, {
+                "level": 2,
+                "objectType": "PPO",
+                "guid": "3863BB4422751ED7BCA7402E96B3BF78",
+                "explanation": "Phase 1",
+                "parentGuid": "3863BB4422751ED7BCA73DC9ABF81F76",
+                "iconSource": "/sap/public/ppm/pro/icon_phase_tr.gif",
+                "iconTooltip": "Phase",
+                "statusIconSource": "/sap/public/bc/icons/s_S_LEDI.gif",
+                "statusIconTooltip": "No Value Set",
+                "editable": "FALSE",
+                "potentialParent": "TRUE",
+                "collapsed": "TRUE",
+                "childrenLoaded": "FALSE",
+                "selected": "FALSE",
+                "scheduleConflict": "FALSE",
+                "cutCopySelected": "FALSE",
+                "menuId": "NIL"
+            }, {
+                "level": 2,
+                "objectType": "PPO",
+                "guid": "3863BB4422751EE7BCA8BA8952790951",
+                "explanation": "Phase 2",
+                "parentGuid": "3863BB4422751ED7BCA73DC9ABF81F76",
+                "iconSource": "/sap/public/ppm/pro/icon_phase_tr.gif",
+                "iconTooltip": "Phase",
+                "statusIconSource": "/sap/public/bc/icons/s_S_LEDI.gif",
+                "statusIconTooltip": "No Value Set",
+                "editable": "FALSE",
+                "potentialParent": "TRUE",
+                "collapsed": "TRUE",
+                "childrenLoaded": "FALSE",
+                "selected": "FALSE",
+                "scheduleConflict": "FALSE",
+                "cutCopySelected": "FALSE",
+                "menuId": "NIL"
+            }, {
+                "level": 2,
+                "objectType": "PPO",
+                "guid": "3863BB4422751EE7BCA8BBF56146C953",
+                "explanation": "Phase 3",
+                "parentGuid": "3863BB4422751ED7BCA73DC9ABF81F76",
+                "iconSource": "/sap/public/ppm/pro/icon_phase_tr.gif",
+                "iconTooltip": "Phase",
+                "statusIconSource": "/sap/public/bc/icons/s_S_LEDI.gif",
+                "statusIconTooltip": "No Value Set",
+                "editable": "FALSE",
+                "potentialParent": "TRUE",
+                "collapsed": "TRUE",
+                "childrenLoaded": "FALSE",
+                "selected": "FALSE",
+                "scheduleConflict": "FALSE",
+                "cutCopySelected": "FALSE",
+                "menuId": "NIL"
+            }
+    	]
+	}
+}
